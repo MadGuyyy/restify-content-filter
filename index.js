@@ -46,7 +46,8 @@ module.exports = function filter(options) {
 			if (dispatchToErrorHandler) {
 				return next({status: errorStatus, code: errorCode, message: urlMessage + (appendFound ? found : "")})
 			} else {
-				return res.status(errorStatus).send(urlMessage + (appendFound ? found : ""));
+				res.status(errorStatus);
+				return res.send(urlMessage + (appendFound ? found : ""));
 			}
 		}
 
@@ -81,7 +82,8 @@ module.exports = function filter(options) {
 					if (dispatchToErrorHandler) {
 						return next({status: errorStatus, code: errorCode, message: urlMessage + (appendFound ? found : "")})
 					} else {
-						return res.status(errorStatus).send(bodyMessage + (appendFound ? found : ""));
+						res.status(errorStatus)
+						return res.send(bodyMessage + (appendFound ? found : ""));
 					}
 				}
 				next();
