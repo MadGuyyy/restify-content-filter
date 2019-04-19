@@ -26,15 +26,15 @@ module.exports = function filter(options) {
 		if (caseSensitive) {
 			for (var i = 0; i < urlBlackList.length; i++){
 				/* The URL in the request might be handled by using 'req.params.id' for 'address/users/:id' by a programmer.
-				   Because of this don't use req.query object instead of req.originalUrl value */
-				if (req.originalUrl.indexOf(urlBlackList[i]) !== -1) {
+				   Because of this don't use req.query object instead of req.url value */
+				if (req.url.indexOf(urlBlackList[i]) !== -1) {
 					found = urlBlackList[i];
 					break;
 				}
 			}
 		} else {
 			/* If caseSensitive is `false` convert the originalURL value and bodyBlackList items into lowercase strings then examine them */
-			var url = req.originalUrl.toLowerCase();
+			var url = req.url.toLowerCase();
 			for (var i = 0; i < urlBlackList.length; i++){
 				if (url.indexOf(urlBlackList[i].toLowerCase()) !== -1) {
 					found = urlBlackList[i];
